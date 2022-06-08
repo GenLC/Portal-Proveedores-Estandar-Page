@@ -9,7 +9,7 @@
                         <Bar id="_IDGenBar1">
 
                             <contentLeft>
-                                <Image id="_IDGenImage2" src="../images/sapicon.jpg" height="45%" />
+                                <Image id="_IDGenImage2" src="https://genlc.github.io/Portal-Proveedores-Estandar-Page/images/sapicon.jpg" height="45%" />
                                 <Label id="_IDGenLabel1" text="STAR TECHNOLOGY"></Label>
                             </contentLeft>
                             <contentMiddle></contentMiddle>
@@ -49,7 +49,7 @@
 
                             <VBox id="_IDGenVBox2" class="border">
 
-                                <Image class="border p-2" id="_IDGenImage1" src="../images/logo.png" height="100%" />
+                                <Image class="border p-2" id="_IDGenImage1" src="https://genlc.github.io/Portal-Proveedores-Estandar-Page/images/logo.png" height="100%" />
 
                             </VBox>
 
@@ -64,9 +64,9 @@
                             </HBox>
 
                             <HBox id="_IDGenHBox7">
-                                <Button id="_IDGenButton2" icon="../images/Whatsapp.png" />
-                                <Button id="_IDGenButton3" icon="../images/ig.png" />
-                                <Button id="_IDGenButton4" icon="../images/linkedin.png" />
+                                <Button id="_IDGenButton2" icon="https://genlc.github.io/Portal-Proveedores-Estandar-Page/images/Whatsapp.png" />
+                                <Button id="_IDGenButton3" icon="https://genlc.github.io/Portal-Proveedores-Estandar-Page/images/ig.png" />
+                                <Button id="_IDGenButton4" icon="https://genlc.github.io/Portal-Proveedores-Estandar-Page/images/linkedin.png" />
 
                             </HBox>
 
