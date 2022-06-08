@@ -1,0 +1,485 @@
+<mvc:View controllerName="ppe.ppe.controller.Menu" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+    xmlns:t="sap.ui.table" xmlns:i="sap.m.InputBase">
+    <Shell id="shell">
+
+
+        <SplitContainer visible="{= ${LoginModel>/Logged} === true}" id="MenuView" initialDetail="detail"
+            initialMaster="master">
+
+            <masterPages>
+
+                <Page id="master" backgroundDesign="List">
+                    <customHeader>
+                        <Bar id="_IDGenBar1">
+
+                            <contentLeft>
+                                <Button class="" id="btnChangeMenu" press="btnChangeMenu" icon="sap-icon://menu" />
+
+                            </contentLeft>
+                            <contentRight>
+
+                                <Button class="" id="btnAccount" press="btnAccount" icon="sap-icon://account" />
+                                <Button class="" id="btnLogout" press="logout" icon="sap-icon://log" />
+                            </contentRight>
+                        </Bar>
+                    </customHeader>
+
+                    <List id="_IDGenList1">
+                        <StandardListItem id="goToDashboard" title="Dashboard" type="Navigation" press="goToDashboard"
+                            icon="sap-icon://home" />
+                        <StandardListItem id="goToPedidos" title="Pedidos" type="Navigation" press="goToPedidos"
+                            icon="sap-icon://document-text" />
+                        <StandardListItem id="goToFacturas" title="Facturas" type="Navigation" press="goToFacturas"
+                            icon="sap-icon://order-status" />
+                        <StandardListItem id="goToPagos" title="Pagos" type="Navigation" press="goToPagos"
+                            icon="sap-icon://monitor-payments" />
+                        <StandardListItem id="goToCuentaCorriente" title="Cuenta Corriente" type="Navigation"
+                            press="goToCuentaCorriente" icon="sap-icon://batch-payments" />
+                        <StandardListItem id="goToContacto" title="Contacto" type="Navigation" press="goToContacto"
+                            icon="sap-icon://customer-and-contacts" />
+
+                    </List>
+                </Page>
+
+            </masterPages>
+
+            <detailPages>
+                <Page id="PageDashboard">
+
+                    <customHeader>
+                        <Bar id="_IDGenBar2">
+                            <contentLeft>
+
+                                <Label id="_IDGenLabel23" class="strong" text="Dashboard"></Label>
+                            </contentLeft>
+                            <contentRight>
+                                <Image id="_IDGenImage2" src="../images/logomanuchar.png" height="45%" />
+                                <Label id="_IDGenLabel22" class="strong"
+                                    text="Usuario:  {LoginModel>/UserData/CardCode}"></Label>
+                            </contentRight>
+                        </Bar>
+                    </customHeader>
+                </Page>
+
+                <Page id="PagePedidos" title="Pedidos">
+                    <Panel id="_IDGenPanel3">
+                        <HBox id="_IDGenHBox11" alignItems="Center" justifyContent="Center">
+                            <VBox id="_IDGenVBox15" class="mx-3 p-3 border rounded">
+                                <Label id="_IDGenLabel19" text="Desde" design="Bold" />
+                                <DatePicker id="DP1" placeholder="Enter Date" change="dateSince"
+                                    class="sapUiSmallMarginBottom" />
+                                <Label id="_IDGenLabel20" text="Hasta" design="Bold" />
+                                <DatePicker id="DP2" placeholder="Enter Date" change="handleUntil"
+                                    class="sapUiSmallMarginBottom" />
+                                <HBox id="_IDGenHBox1">
+                                    <Button class="" press="btnSearchPurchaseOrders" id="btnSearchPurchaseOrders"
+                                        icon="sap-icon://search" />
+
+                                </HBox>
+                                <Label id="_IDGenLabel21" text="Pedidos no facturados" design="Bold" />
+                                <Switch type="AcceptReject" id="switch" change="changeSwitch" state="true">
+                                    <layoutData>
+                                        <FlexItemData id="_IDGenFlexItemData1" growFactor="1" />
+                                    </layoutData>
+                                </Switch>
+                            </VBox>
+                            <!--<VBox id="_IDGenVBox16" class="mx-3 p-3 border rounded"></VBox>
+                            <VBox id="_IDGenVBox17" class="mx-3 p-3 border rounded">
+                                <Label id="_IDGenLabel22" text="Importe de descuento" design="Bold" />
+                                <Label id="_IDGenLabel23" text="$0.00" />
+                            </VBox>
+                            <VBox id="_IDGenVBox18" class="mx-3 p-3 border rounded">
+                                <Label id="_IDGenLabel24" text="Total" design="Bold" />
+                                <Label id="_IDGenLabel25" text="$0.00" />
+                            </VBox> -->
+
+                        </HBox>
+                    </Panel>
+
+                    <Table noDataText="Cargando items..." width="" class="table mx-3 my-3" itemPress="PurchaseOrders"
+                        id="tablePurchaseOrders" growing="true" growingThreshold="20"
+                        items="{path: 'OrdersModel>/PurchaseOrders'}">
+                        <items>
+                            <ColumnListItem id="_IDGenColumnListItem1" type="Active">
+                                <cells>
+                                    <Text id="_IDGenText1" text="{OrdersModel>DocNum} " class="font-weight-bold " />
+                                    <Text id="_IDGenText2" text="{OrdersModel>DocDate}" />
+
+                                    <Text id="_IDGenText3" text="{OrdersModel>DocTotal}" />
+                                    <Text id="_IDGenText4" text="{OrdersModel>DocCurrency}" />
+                                    <Text id="_IDGenText5" text="{path: 'OrdersModel>DocumentStatus',
+                                    formatter: '.formatter.statusText'}" />
+                                    <!-- <ObjectStatus id="onjectstatus" text="{path: 'OrdersModel>DocumentStatus',
+                                    formatter: '.formatter.statusText'}"/> -->
+
+                                    <HBox id="_IDGenHBox3">
+                                        <Button id="btn1" icon="sap-icon://search" press="POSearch"></Button>
+                                        <Button id="btn2" icon="sap-icon://pdf-attachment" press="POPDF"></Button>
+                                        <Button id="btn3" icon="sap-icon://lead" press="POLead"></Button>
+                                    </HBox>
+
+
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                        <columns>
+                            <Column id="_IDGenColumn1" width="6em">
+                                <header>
+                                    <HBox id="_IDGenHBox71" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel26" text="DocNum" />
+                                    </HBox>
+
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn2">
+                                <header>
+                                    <HBox id="_IDGenHBox4" alignItems="Center" justifyContent="Center">
+                                        <Button id="btndocdate" icon="sap-icon://arrow-top" text="DocDate"
+                                            press="docdate"></Button>
+                                    </HBox>
+
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn3">
+                                <header>
+                                    <HBox id="_IDGenHBox72" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel28" text="DocTotal" />
+                                    </HBox>
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn4">
+                                <header>
+                                    <HBox id="_IDGenHBox73" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel29" text="DocCurrency" />
+                                    </HBox>
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn5">
+                                <header>
+                                    <HBox id="_IDGenHBox74" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel5" text="DocumentStatus" />
+                                    </HBox>
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn6">
+                                <header>
+                                    <HBox id="_IDGenHBox75" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel6" text="Acciones" />
+                                    </HBox>
+                                </header>
+                            </Column>
+
+
+
+                        </columns>
+                    </Table>
+
+
+                </Page>
+
+                <Page id="PagePedidosDetalle" title="Detalle Pedido">
+                    <Panel id="_IDGenPanel4">
+
+                    </Panel>
+                    <Table noDataText="Cargando items..." width="" class="table mx-3 my-3"
+                        id="tablePurchaseOrdersDetail" growing="true" growingThreshold="20"
+                        items="{path: 'OrdersModel>/PurchaseOrders'}">
+                        <items>
+                            <ColumnListItem id="_IDGenColumnListItem3" type="Active">
+                                <cells>
+                                    <Text id="_IDGenText11" text="{OrdersModel>DocNum} " class="font-weight-bold " />
+                                    <Text id="_IDGenText21" text="{OrdersModel>DocDate}" />
+
+                                    <Text id="_IDGenText31" text="{OrdersModel>DocTotal}" />
+                                    <Text id="_IDGenText41" text="{OrdersModel>DocCurrency}" />
+                                    <Text id="_IDGenText51" text="{path: 'OrdersModel>DocumentStatus',
+                                    formatter: '.formatter.statusText'}" />
+                                    <!-- <ObjectStatus id="onjectstatus" text="{path: 'OrdersModel>DocumentStatus',
+                                    formatter: '.formatter.statusText'}"/> -->
+
+                                    <HBox id="_IDGenHBox70">
+                                        <Button id="btn4" icon="sap-icon://search" press="POSearch"></Button>
+                                        <Button id="btn5" icon="sap-icon://pdf-attachment" press="POPDF"></Button>
+                                        <Button id="btn6" icon="sap-icon://lead" press="POLead"></Button>
+                                    </HBox>
+
+
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                        <columns>
+                            <Column id="_IDGenColumn111" width="6em">
+                                <header>
+                                    <HBox id="_IDGenHBox76" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel261" text="Código" />
+                                    </HBox>
+
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn112">
+                                <header>
+                                    <HBox id="_IDGenHBox411" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel2611" text="Descripción" />
+                                    </HBox>
+
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn31">
+                                <header>
+                                    <HBox id="_IDGenHBox77" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel281" text="Precio" />
+                                    </HBox>
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn41">
+                                <header>
+                                    <HBox id="_IDGenHBox78" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel29111" text="UDM" />
+                                    </HBox>
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn51">
+                                <header>
+                                    <HBox id="_IDGenHBox79" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel51" text="Cant tot" />
+                                    </HBox>
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn61">
+                                <header>
+                                    <HBox id="_IDGenHBox80" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel61" text="Cant Entregada" />
+                                    </HBox>
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn611">
+                                <header>
+                                    <HBox id="_IDGenHBox81" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel611" text="Cant Facturada" />
+                                    </HBox>
+                                </header>
+                            </Column>
+                            <Column id="_IDGenColumn6111">
+                                <header>
+                                    <HBox id="_IDGenHBox82" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel6111" text="Importe Entregado" />
+                                    </HBox>
+                                </header>
+                            </Column>
+
+                              <Column id="_IDGenColumn61111">
+                                <header>
+                                    <HBox id="_IDGenHBox83" alignItems="Center" justifyContent="Center">
+                                        <Label id="_IDGenLabel61111" text="Estado Pedido" />
+                                    </HBox>
+                                </header>
+                            </Column>
+
+
+
+
+
+                        </columns>
+
+
+                    </Table>
+
+                </Page>
+
+                <Page id="PageFacturas" title="Facturas"></Page>
+
+                <Page id="PagePagos" title="Pagos"></Page>
+
+                <Page id="PageCCorriente" title="Cuenta Corriente"></Page>
+
+                <Page id="PageContacto" title="Contacto">
+                    <Button class="" id="btncontact" press="btnChangeMenu" icon="sap-icon://menu" />
+
+                </Page>
+                <Page id="PageCuenta" title="Usuario">
+                    <HBox id="_IDGenHBox0" alignItems="Center" justifyContent="Center">
+                        <VBox id="_IDGenVBox1" class="border rounded p-2 mr-4 " alignItems="Center"
+                            justifyContent="Center">
+                            <Label id="1213" text="Datos de cuenta" class="h5 bold" />
+                            <HBox id="_IDGenHBox2">
+                                <VBox id="_IDGenVBox3">
+                                    <Label id="_IDGenLabel291" text="Codigo" />
+                                    <Input editable="false" value="" id="codeuser"></Input>
+                                </VBox>
+                                <VBox id="razsoc2" class="ml-3">
+                                    <Label id="lblrazsoc" text="Razón Social" />
+                                    <Input editable="false" value="{LoginModel>/UserData/CardName}"
+                                        id="razonsocial"></Input>
+                                </VBox>
+                            </HBox>
+
+                            <HBox id="_IDGenHBox211">
+                                <VBox id="_IDGenVBox31">
+                                    <Label id="_IDGenLabel2911" text="Saldo de la cuenta" />
+                                    <Input editable="false" value="{LoginModel>/UserData/CurrentAccountBalance}"
+                                        id="saldocuenta"></Input>
+                                </VBox>
+                                <VBox id="razsoc21" class="ml-3">
+                                    <Label id="lblrazsoc1" text="Condición de pago" />
+                                    <Input editable="false"
+                                        value="{LoginModel>/UserData/PaymentTerms/PaymentTermsGroupName}"
+                                        id="condicionpago"></Input>
+                                </VBox>
+                            </HBox>
+
+                            <Button class="" text="Legajo Impositivo" id="bnLegajoImpositivo" press="legajoImpositivo"
+                                icon="" />
+
+
+                        </VBox>
+
+                        <VBox id="_IDGenVBox2" class="border p-2 mt-2">
+                            <Label id="11" text="Cambio de contraseña" class="h5 bold" />
+                            <HBox id="_IDGenHBox21">
+                                <VBox id="_IDGenVBox">
+                                    <Label id="1" text="Contraseña actual" />
+                                    <Input placeholder="" value="" id="password"></Input>
+                                </VBox>
+                            </HBox>
+                            <HBox id="_IDGenHBox31">
+                                <VBox id="_IDGenVBox12">
+                                    <Label id="111" text="Contraseña nueva" />
+                                    <Input placeholder="" value="" id="newpassword1"></Input>
+                                </VBox>
+                            </HBox>
+
+                            <HBox id="_IDGenHBox41" class="mt-2">
+                                <VBox id="_IDGenVBox13">
+                                    <Label id="1111" text="Repetir contraseña nueva" />
+                                    <Input placeholder="" value="" id="newpassword2"></Input>
+                                </VBox>
+                            </HBox>
+                            <Button class="" text="Confirmar" id="btnChangePassword" press="changePassword" icon="" />
+
+                        </VBox>
+
+                    </HBox>
+                </Page>
+
+                <Page id="PageLegajoImpositivo" title="Legajo Impositivo">
+                    <HBox id="_IDGenHBox5" alignItems="Center" justifyContent="Center">
+                        <VBox id="_IDGenVBox4" class="border rounded p-2 mr-4 mt-4" alignItems="Center"
+                            justifyContent="Center">
+
+                            <HBox id="_IDGenHBox6">
+                                <VBox id="_IDGenVBox5">
+                                    <Label id="_IDGenLabel31" text="Codigo" />
+                                    <Input id="_IDGenInput1" editable="false"
+                                        value="{LoginModel>/UserData/CardCode}"></Input>
+                                </VBox>
+                                <VBox id="_IDGenVBox6" class="ml-3">
+                                    <Label id="_IDGenLabel32" text="Razón Social" />
+                                    <Input id="_IDGenInput2" editable="false"
+                                        value="{LoginModel>/UserData/CardName}"></Input>
+                                </VBox>
+                                <VBox id="_IDGenVBox9" class="ml-3">
+                                    <Label id="_IDGenLabel36" text="Condicion IVA" />
+                                    <Input id="_IDGenInput5" editable="false"
+                                        value="{LoginModel>/UserData/U_B1SYS_VATCtg}"></Input>
+                                </VBox>
+                                <VBox id="_IDGenVBox10" class="ml-3">
+                                    <Label id="_IDGenLabel37" text="CUIT" />
+                                    <Input id="_IDGenInput6" editable="false"
+                                        value="{LoginModel>/UserData/FederalTaxID}"></Input>
+                                </VBox>
+                            </HBox>
+
+                            <HBox id="_IDGenHBox7">
+                                <VBox id="_IDGenVBox7">
+                                    <Label id="_IDGenLabel24" text="Condicion Ganancias" />
+                                    <Input id="_IDGenInput3" editable="false"
+                                        value="{LoginModel>/UserData/U_B1SYS_IncTaxCtg}"></Input>
+                                </VBox>
+                                <VBox id="_IDGenVBox8" class="ml-3">
+                                    <Label id="_IDGenLabel25" text="Condición IIBB" />
+                                    <Input id="_IDGenInput4" editable="false"
+                                        value="{LoginModel>/UserData/U_B1SYS_GrsIncCtg}"></Input>
+                                </VBox>
+                                <VBox id="_IDGenVBox11" class="ml-3">
+                                    <Label id="_IDGenLabel39" text="Número IIBB" />
+                                    <Input id="_IDGenInput7" editable="false"
+                                        value="{LoginModel>/UserData/U_B1SYS_GrsIncId}"></Input>
+                                </VBox>
+                            </HBox>
+
+                            <Button id="_IDGenButton1" class="mt-3" text="SOLICITAR ACTUALIZACION"
+                                press="LegajoImpositivo" />
+
+
+                        </VBox>
+                    </HBox>
+                    <HBox id="_IDGenHBox15" alignItems="Center" justifyContent="Center">
+                        <VBox id="_IDGenVBox16" class="border rounded p-2 mt-5">
+                            <Table noDataText="Cargando items..." width="" class="table " id="tableLegajoImpositivo"
+                                items="{path: 'OrdersModel>/PurchaseOrders'}">
+                                <!-- WithholdingTaxCodes -->
+                                <items>
+                                    <ColumnListItem id="_IDGenColumnListItem2" type="Active">
+                                        <cells>
+                                            <Text id="_IDGenText6" text="{OrdersModel>DocNum}"
+                                                class="font-weight-bold " />
+                                            <Text id="_IDGenText7" text="{OrdersModel>DocDate}" />
+
+                                            <Text id="_IDGenText8" text="{OrdersModel>DocTotal}" />
+                                            <Text id="_IDGenText9" text="{OrdersModel>DocCurrency}" />
+                                            <Text id="_IDGenText10" text="{OrdersModel>DocumentStatus}" />
+
+
+
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                                <columns>
+                                    <Column id="_IDGenColumn7" width="6em">
+                                        <header>
+                                            <Label id="_IDGenLabel211" text="Descripcion" />
+                                        </header>
+                                    </Column>
+                                    <Column id="_IDGenColumn8">
+                                        <header>
+                                            <Label id="_IDGenLabel2" text="Indicador" />
+
+                                        </header>
+                                    </Column>
+                                    <Column id="_IDGenColumn9">
+                                        <header>
+                                            <Label id="_IDGenLabel221" text="% Exención" />
+                                        </header>
+                                    </Column>
+                                    <Column id="_IDGenColumn10">
+                                        <header>
+                                            <Label id="_IDGenLabel231" text="Motivo Exencion" />
+                                        </header>
+                                    </Column>
+                                    <Column id="_IDGenColumn11">
+                                        <header>
+                                            <Label id="_IDGenLabel241" text="Valido desde" />
+                                        </header>
+                                    </Column>
+                                    <Column id="_IDGenColumn12">
+                                        <header>
+                                            <Label id="_IDGenLabel251" text="Valido hasta" />
+                                        </header>
+                                    </Column>
+
+
+
+                                </columns>
+                            </Table>
+                        </VBox>
+                    </HBox>
+                </Page>
+
+
+            </detailPages>
+
+
+        </SplitContainer>
+
+    </Shell>
+</mvc:View>

@@ -1,0 +1,1 @@
+sap.ui.define(["ppe/ppe/controller/Login.controller"],function(n){"use strict";QUnit.module("Login Controller");QUnit.test("I should test the Login controller",function(o){var t=new n;t.onInit();o.ok(t)})});

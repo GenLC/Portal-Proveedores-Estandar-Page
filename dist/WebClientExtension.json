@@ -1,0 +1,9 @@
+{
+    "tiles": [
+        {
+            "text": "Portal Proveedores Estandar",
+            "subtitle": "",
+            "icon": "sap-icon://supplier"
+        }
+    ]
+}

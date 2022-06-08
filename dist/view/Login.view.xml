@@ -1,0 +1,80 @@
+<mvc:View controllerName="ppe.ppe.controller.Login" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+    xmlns:i="sap.m.InputBase">
+    <Shell id="shell">
+
+        <App id="app">
+            <pages>
+                <Page id="page">
+                    <customHeader>
+                        <Bar id="_IDGenBar1">
+
+                            <contentLeft>
+                                <Image id="_IDGenImage2" src="../images/sapicon.jpg" height="45%" />
+                                <Label id="_IDGenLabel1" text="STAR TECHNOLOGY"></Label>
+                            </contentLeft>
+                            <contentMiddle></contentMiddle>
+                            <contentRight>
+                                <Button class="" id="btn1" press="" icon="sap-icon://account" text="" />
+                                <Button class="" id="btn2" press="" icon="sap-icon://home" text="" />
+                                <Button class="" id="btn3" press="" icon="sap-icon://visits" text="" />
+                            </contentRight>
+
+                        </Bar>
+                    </customHeader>
+                    <Panel id="_IDGenPanel1">
+
+
+                        <HBox id="_IDGenHBox1" alignItems="Center" justifyContent="Center">
+                            <VBox id="_IDGenVBox1" class="border rounded p-2 mr-4 " alignItems="Center"
+                                justifyContent="Center">
+                                <HBox id="_IDGenHBox2">
+
+                                    <Input placeholder="Usuario" id="user"></Input>
+                                    <Button class="" id="bntuser" press="" icon="sap-icon://employee" />
+                                </HBox>
+                                <HBox id="_IDGenHBox3">
+                                    <Input placeholder="Contraseña" type="Password" id="password" />
+                                    <Button class="" id="btnpass" press="" icon="sap-icon://locked" />
+                                </HBox>
+
+                                <HBox id="_IDGenHBox4" class="mt-2">
+                                    <Button class="h100" id="bntLogin" press="onLogin" text="Ingresar" />
+                                </HBox>
+                                <HBox id="_IDGenHBox5" class="mt-5">
+
+                                    <Button id="_IDGenButton1" text="Olvide mi contraseña" icon="sap-icon://key" />
+
+                                </HBox>
+                            </VBox>
+
+                            <VBox id="_IDGenVBox2" class="border">
+
+                                <Image class="border p-2" id="_IDGenImage1" src="../images/logo.png" height="100%" />
+
+                            </VBox>
+
+                        </HBox>
+
+                    </Panel>
+                    <footer>
+                        <OverflowToolbar id="_IDGenOverflowToolbar1" class="d-flex justify-content-between">
+                            <HBox id="_IDGenHBox6">
+                                <Label id="_IDGenLabel2" class="font-weight-bold"
+                                    text="MANUCHAR - PORTAL PROVEEDORES"></Label>
+                            </HBox>
+
+                            <HBox id="_IDGenHBox7">
+                                <Button id="_IDGenButton2" icon="../images/Whatsapp.png" />
+                                <Button id="_IDGenButton3" icon="../images/ig.png" />
+                                <Button id="_IDGenButton4" icon="../images/linkedin.png" />
+
+                            </HBox>
+
+                        </OverflowToolbar>
+                    </footer>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+    
+</mvc:View>
